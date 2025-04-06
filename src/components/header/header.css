@@ -1,0 +1,17 @@
+.myHeader{
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    padding : 0.2vw;
+    margin : 0.5vw 5vw 0.5vw 5vw;
+    border: 2px solid #FCD29A;
+    border-radius: 13px;
+    font-size: 30px;
+    background: #FCD29A;
+}
+
+
+
+@media(max-width:600px) {
+
+}
