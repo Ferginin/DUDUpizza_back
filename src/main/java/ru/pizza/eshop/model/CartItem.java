@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Setter
 @Getter
 @Entity
+@Setter
 @Table(name = "cart_items")
 public class CartItem {
 
@@ -45,4 +44,5 @@ public class CartItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pizza_id")
     private Pizza pizza;
+
 }

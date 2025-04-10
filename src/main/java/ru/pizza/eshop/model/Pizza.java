@@ -29,4 +29,5 @@ public class Pizza {
 
     @Column(name = "status")
     private Boolean status;
+
 }

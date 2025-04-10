@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import ru.pizza.eshop.model.CartItem;
 
 @Repository
-public interface CartItemRepository extends CrudRepository<CartItem, Integer> {
+public interface CartItemRepository extends CrudRepository<CartItem, Long> {
 }

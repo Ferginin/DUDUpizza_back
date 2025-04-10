@@ -1,11 +1,12 @@
 package ru.pizza.eshop.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.pizza.eshop.DTO.PizzaDto;
 import ru.pizza.eshop.model.Pizza;
 import ru.pizza.eshop.repository.PizzaRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PizzaService {
@@ -16,23 +17,36 @@ public class PizzaService {
         this.pizzaRepository = pizzaRepository;
     }
 
-    public List<Pizza> getAllPizza() {
+    public List<Pizza> getAllPizzas() {
         return pizzaRepository.findAll();
     }
 
-    public Optional<Pizza> getPizzaById(Long id) {
-        return pizzaRepository.findById(id);
+    public Pizza getPizzaById(Long id) {
+        return pizzaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Пицца не найдена"));
     }
 
-    public Pizza createPizza(Pizza pizza) {
+    public Pizza createPizza(PizzaDto pizzaDto) {
+        Pizza pizza = new Pizza();
+        pizza.setPizzaName(pizzaDto.getPizzaName());
+        pizza.setPizzaPrice(pizzaDto.getPizzaPrice());
+        pizza.setPizzaDescription(pizzaDto.getPizzaDescription());
+        pizza.setPizzaImage(pizzaDto.getPizzaImage());
+        pizza.setStatus(pizzaDto.getStatus());
         return pizzaRepository.save(pizza);
     }
 
-    public Pizza updatePizza(Pizza pizza) {
+    public Pizza updatePizza(Long id, PizzaDto pizzaDto) {
+        Pizza pizza = getPizzaById(id);
+        pizza.setPizzaName(pizzaDto.getPizzaName());
+        pizza.setPizzaPrice(pizzaDto.getPizzaPrice());
+        pizza.setPizzaDescription(pizzaDto.getPizzaDescription());
+        pizza.setPizzaImage(pizzaDto.getPizzaImage());
+        pizza.setStatus(pizzaDto.getStatus());
         return pizzaRepository.save(pizza);
     }
 
-    public void deletePizzaById(Long id) {
+    public void deletePizza(Long id) {
         pizzaRepository.deleteById(id);
     }
 }
